@@ -23,6 +23,9 @@ body {
   margin: 0px;
 }
 
+a, a:link, a:visited, a:hover, a:active {
+  color: #592FDE;
+}
 
 /*
   nav
@@ -133,12 +136,100 @@ main {
 
 table {
   border: 2px solid #f0f0f1;
+  border-spacing: 0px;
   margin-top: 10px;
   width: 97%;
   margin: 0 auto 0 auto;
 }
 
 th {
+  height: 40px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th.tableHeader {
   background-color: #F6F7FA;
+}
+
+thead th {
+  background-color: #F6F7FA;
+  vertical-align: middle;
+}
+
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  text-align: left;
+}
+
+table img {
+  width: 60%;
+  float: right;
+  border-radius: 9px;
+}
+
+.peopleData {
+  text-align: center;
+}
+
+/*
+  hr
+*/
+
+.line {
+  height: 1px;
   width: 100%;
+  border: 1px solid #F0F0F1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*
+  footer
+*/
+
+footer li {
+  color: #592FDE;
+}
+
+.footerLeft {
+  float: left;
+  width: 50%;
+}
+
+.footerLeft ul {
+  list-style-type: none;
+}
+
+.footerLeft li {
+  text-decoration: none;
+  display: block;
+  float: left;
+  margin-right: 20px;
+}
+
+.footerRight {
+  float: right;
+  width: 50%;
+}
+
+.footerRight ul {
+  list-style-type: none;
+}
+
+.footerRight li {
+  text-decoration: none;
+  display: block;
+  float: right;
+  margin-left: 20px;
+}
+
+footer li span {
+  color: #000;
 }
