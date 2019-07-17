@@ -1,0 +1,144 @@
+/*
+  borders for troubleshooting
+*/
+
+.wborder {
+  border: 1px solid #fff;
+  z-index: 999;
+}
+
+.bborder {
+  border: 1px solid #000;
+  z-index: 999;
+}
+
+/*
+  body
+*/
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  width: 100%;
+  margin: 0px;
+}
+
+
+/*
+  nav
+*/
+
+nav {
+  background-color: #292C32;
+  color: #C6C7C9;
+  float: left;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin-top: 0;
+  vertical-align: center;
+}
+
+nav li {
+  float: left;
+  text-decoration: none;
+  display: block;
+  margin-top: 0px;
+  margin-right: 10px;
+
+}
+
+nav li i {
+  font-size: 1.9em;
+  color: #fff;
+  vertical-align: center;
+  margin-right: .2em;
+  margin-left: .3em;
+}
+
+.navLogoTopPad {
+  padding-top: 10px;
+}
+
+.navTextTopPad {
+  padding-top: 15px;
+}
+
+/*
+  main
+*/
+
+main {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.codeup-logo {
+  background-color: #FAFBFC;
+  height: 140px;
+}
+
+#codeupLogo {
+  width: 20%;
+}
+
+/*
+  tab section
+*/
+
+.tabs {
+  width: 100%;
+}
+
+.tablink {
+  background-color: #FAFBFC;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 20%;
+  color: #9DA2A8;
+  border-bottom: 2px solid #F0F0F1;
+}
+
+.tablink:hover {
+  background-color: #fff;
+  border-top: 3px solid #E65E00;
+  border-left: 2px solid #f0f0f1;
+  border-right: 2px solid #f0f0f1;
+  border-bottom: 3px solid #fff;
+}
+
+.tabNumbers {
+  background: #E9EAEB;
+  border-radius: 10px;
+  width: 20px;
+}
+
+/*
+  table
+*/
+
+.table {
+  margin-top: 80px;
+}
+
+table {
+  border: 2px solid #f0f0f1;
+  margin-top: 10px;
+  width: 97%;
+  margin: 0 auto 0 auto;
+}
+
+th {
+  background-color: #F6F7FA;
+  width: 100%;
+}
