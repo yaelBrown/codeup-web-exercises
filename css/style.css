@@ -196,6 +196,7 @@ table img {
 
 footer li {
   color: #592FDE;
+  cursor: pointer;
 }
 
 .footerLeft {
