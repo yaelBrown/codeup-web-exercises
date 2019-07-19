@@ -1,0 +1,51 @@
+:root {
+  --message-hover: #fff;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Ubuntu, sans-serif;
+}
+
+.messageBoxes {
+  margin: 0px auto 0px auto;
+  width: 80%;
+}
+
+.message {
+  width: 50rem;
+  border: 2px solid lightgray;
+  font-weight: bold;
+  margin: .5em;
+  text-align: left;
+  padding: .5em;
+  border-radius: 5px;
+}
+
+.message:hover {
+  color: var(--message-hover);
+  transition: color .2s ease-in-out;
+}
+
+.message-info {
+  background-color: #CDDEFF;
+  color: #2B228B;
+}
+
+.message-success {
+  background-color: #CFF3DA;
+  color: #378655;
+}
+
+.message-warning {
+  background-color: #FCFBC9;
+  color: #846F04;
+}
+
+.message-error {
+  background-color: #FAD3D7;
+  color: #841A35;
+}
