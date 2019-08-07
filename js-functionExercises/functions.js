@@ -80,7 +80,7 @@ console.log(isTwo(random));
  */
 
 function calculateTip(percent, total) {
-  return total * percent;
+  return "$" + (total * percent).toFixed(2);
 }
 
 console.log(calculateTip(.20, 20));
@@ -111,7 +111,7 @@ alert("Please pay " + calculateTip(whatPercent, whatTotal));
  * > var dicountPercent = .2; // 20%
  * > applyDiscount(originalPrice, dicountPercent) // 80
  *
- * > applyDiscount(45.99, 0.12) // 40.4712
+ * > applyDiscount(45.99, 0.12) // 40.s4712
  */
 
 function applyDiscount(price, discount) {

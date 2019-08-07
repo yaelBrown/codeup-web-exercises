@@ -255,62 +255,199 @@
   }
 
 // Make a function named isBlank(input) that determines if a given input is spaces, newline characters, or tabs.
+  function isBlank(input) {
+    return (input == " ") || (input == "\n") || (input == "\t");
+
+  }
+
 // Make a function named trim(string) that removes empty spaces before and after the input.
+  function trim(str) {
+    return str.trim();
+  }
+
 // Make a function named areEqual(input1, input2) that returns if both inputs have the same value
+  function areEqual(inp1, inp2) {
+    return inp1 == inp2;
+  }
+
 // Make a function named areIdentical(input1, input2) that returns if both inputs are same value and data type.
+  function areIdentical(inp1, inp2) {
+    return inp1 === inp2;
+  }
+
 // Make a function named not(input) returns the input with a flipped boolean
+  function not(input) {
+    return !(input);
+  }
+
 // Make a function named notNot(input) that the negation of the negation of the input.
+  function notNot(bool) {
+    return !!(bool);
+  }
+
 // Make a function named and(predicate1, predicate2) that returns the logical operation of AND
+  function and(predicate1, predicate2) {
+    return predicate1 && predicate2;
+  }
+
 // Make a function named or(predicate1, predicate2) that returns the logical operation of OR
+  function or(bool1, bool2) {
+    return bool1 || bool2;
+  }
+
 // Write a function called reverseString(string) that reverses a string
+function reverseString(str) {
+  let temp = [];
+  let revStr = "string";
+  
+  temp = str.split("").reverse();
+  revStr = temp.join();
+  
+  let repeat = Math.floor(revStr.length / 2);
+  
+  for (var i = 0; i < repeat; i++) {
+    revStr = revStr.replace(",", "");
+  }
+    
+  return revStr; 
+}
+
 // Make a function named absoluteValue(number) that returns the absolute value of a number.
+  function absoluteValue(num) {
+    return Math.abs(num);
+  }
+
 // Make a function named rollDice(sides) that takes in an argument containing the number of sides the die should have. Generate a random number between 1 up to and including the number of sides.
+  function rollDice(sides) {
+    return Math.floor(Math.random() * (sides + 1));
+  }
+
 // Simple Function Drills
 // Make a function called returnTwo() that returns the number 2 when called
+  function returnTwo() {
+    return 2;
+  }
+
 // Test this function with console.log(returnTwo())
+  console.log(returnTwo());
 
 // Make a function called sayHowdy() which console.logs the string “Howdy!”
+  function sayHowdy() {
+    console.log("Howdy!");
+  }
 
 // Test this function by directly calling sayHowdy()
+  console.log(sayHowdy());
 
 // Remember this function does not need a defined return value
 
 // Make a function called returnName() that returns the string of your name
+  function returnName(name) {
+    console.log(name);
+  }
 
 // Test this function with console.log(returnName())
+  console.log(returnName());
 
 // Make a function called addThree() which takes in a number input and returns the number plus 3.
+  function addThree(num) {
+    return num + 3;
+  }
+
 // Test this function with console.log(addThree(5))
+  console.log(addThree(5));
 
 // Make a function called sayString() which returns the string input passed in.
+  function sayString(str) {
+    return str;
+  }
+
 // Test this function with console.log(sayString('codeup'))
+  console.log(sayString("Codeup"));
 
 // Challenge Function Drills
 // Write a function called identity(input) that takes in an argument called input and returns that input.
+  function identity(input) {
+    return input;
+  }
 
 // Write a function called getRandomNumber(min, max) that returns a random number between min and max values sent to that function call.
+  function getRandomNumber(min, max) {
+    return (Math.random() * (+max - +min) + min);
+  }
 
 // Write a function called first(input) that returns the first character in the provided string.
+  function first(input) {
+    let temp;
+    let tempArr = [];
 
+    tempArr = input.split("")
+
+    return tempArr[0];
+  }
 // Write a function called last(input) that returns the last character of a string
+  function last(input) {
+    let tempArr = [];
+  
+    tempArr = input.split("");
+  
+    return tempArr[tempArr.length - 1];
+  }
 
 // Write a function called rest(input) that returns everything but the first character of a string.
+function rest(input) {
+  return input.substring(1, (input.length));
+}
 
 // Write a function called reverse(input) that takes a string and returns it reversed.
+function reverse(input) {
+  let temp = [];
+  let revStr = "string";
+  
+  temp = input.split("").reverse();
+  revStr = temp.join();
+  
+  let repeat = Math.floor(revStr.length / 2);
+  
+  for (var i = 0; i < repeat; i++) {
+    revStr = revStr.replace(",", "");
+  }
+    
+  return revStr; 
+}
 
 // Write a function called isNumeric(input) that takes an input and returns a boolean if the input is numeric.
+function isNumeric(input) {
+  return (typeof input) == "number";
+}
 
 // Write a function called count(input) that takes in a string and returns the number of characters.
+function count(str) {
+  return str.length;
+}
 
 // Write a function called add(a, b) that returns the sum of a and b
+function add(a,b) {
+  return a + b;
+}
 
 // Write a function called subtract(a, b) that return the difference between the two inputs.
+function subtract(a,b) {
+  return a-b;
+}
 
 // Write multiply(a, b) function that returns the product
+function multiply(a,b) {
+  return a*b;
+}
 
 // Write a divide(numerator, denominator) function that returns a divided by b
+function divide(numer, denom) {
+  return numer / denom;
+}
 
 // Write a remainder(number, divisor) function that returns the remainder left over when dividing number by the divisor
+
 
 // Write the function square(a) that takes in a number and returns the number multiplied by itself.
 
