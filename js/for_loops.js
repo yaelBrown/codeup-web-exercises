@@ -34,10 +34,14 @@ var num = '';
 var x;
 var y;
 for(x = 1; x < 10; x++) {
-    for (y = 0; y < x; y++) num += x;
-    console.log(num);
-    num = ''
+  for (y = 0; y < x; y++) num += x;
+  console.log(num);
+  num = '';
 }
+
+// for (var i = 1; i <= 9;i++) {
+//   console.log(String(i).repeat(i));
+// }
 
 // minus5
 
