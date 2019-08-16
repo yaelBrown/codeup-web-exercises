@@ -24,9 +24,17 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<div class="btn-row">
+    <button id="bg">Change background to Green</button></br>
+    <button id="cow">Print a cow to console</button></br>
+    <button id="title">Toggle page Title</button></br>
+    <button id="vanish">document vanish!</button></br>
+</div>
+
+
 
 <script>
-    (function() {
+    // (function() {
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
         var mainHeader = document.getElementById("main-header");
@@ -60,7 +68,51 @@
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
         subParagraphs[0].innerText = "Mission Accomplished!";
-    })();
+
+
+
+
+        // DOM events
+
+        var cow = ` ________________________________________
+< mooooooooooooooooooooooooooooooooooooo >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`;
+                
+        function changePageTitle() {
+          document.title = "heebahaba heebahaba";
+        }
+
+        function bgToGreen() {
+          document.body.style.background = "green";
+        }
+
+        function printCow() {
+          console.log(cow)
+        }
+
+        function ninjaVanish() {
+          document.body.style.display = "none";
+        }
+
+        let bgId = document.getElementById("bg");
+        let cowId = document.getElementById("cow");
+        let titleId = document.getElementById("title");
+        let vanishId = document.getElementById("vanish");
+
+        bgId.addEventListener('click', bgToGreen);
+        cowId.addEventListener('click', printCow);
+        titleId.addEventListener('click', changePageTitle);
+        vanishId.addEventListener('click', ninjaVanish);
+
+        // Test cow
+        // console.log(cow);
+        
+    // })();
 </script>
 </body>
 </html>
