@@ -69,3 +69,4 @@ miami[1] gets lattitude
 
 
 // map.flyTo() - flies you to location 
+    // map.flyTo({center: result, zoom: 12, speed: .4})
