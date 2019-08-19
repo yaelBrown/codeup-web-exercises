@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,91 +9,63 @@
     <meta name="keywords" content="">
     <meta name="author" content="Yael Brown">
     <meta name="copyright" content="">
-
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
     <!-- Mapbox GL JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
-
-
+    
+    
     <title>Mapbox Maps API</title>
   </head>
   <body>
-
+    
     <!-- Main Section -->
     <main>
       <section>
         <article>
-          <!-- Mapbox boilerplate -->
+          <!-- Add Key  -->
+          <script src="./js/key.js"></script>
 
+          <!-- mapbox utils -->
+          <script src="./js/mapbox-utils.js"></script>
+
+          <!-- Mapbox boilerplate -->
           <div id='map' style='width: 100vw; height: 100vh;'></div>
+          
           <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoieWFlbGJyb3duIiwiYSI6ImNqemVidGhsMjAwc2szZW8wbW51bTFwN2gifQ.Xps4U82N0BsZxh79qcYdRw';
+            // Create an HTML file called mapbox-3.html and copy your code over from mapbox-2. Add a popup to the Lincoln Memorial marker that contains the text "Lincoln Memorial"
+
+            // Lincoln Memorial: 38.889032, -77.049570
+            // Washington DC: 38.907452, -77.035108
+
+            mapboxgl.accessToken = mapBoxToken;
+
+            function zoomOut() {
+              map.zoom = 10;
+            }
+
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v9',
-                zoom: 18,
-                center: [-76.586567, 39.285894]
+                zoom: 11,
+                center: [-77.035108, 38.907452]
             });
 
-            map.on('load', function () {
-            var JRmarker = new mapboxgl.Marker()
-              .setLngLat([-76.586567, 39.285894])
+            var LincolnMemMarker = new mapboxgl.Marker()
+              .setLngLat([-77.049570, 38.889032])
               .addTo(map)
-              .setPopup(JRpopup);
+              .setPopup(LincolnMemMarker);
 
-            var BSmarker = new mapboxgl.Marker()
-              .setLngLat([-81.680841, 30.312739])
-              .addTo(map)
-              .setPopup(BSpopup);
+            var LincolnMemPopup = new mapboxgl.Popup()
+              .setLngLat([-77.049570, 38.889032])
+              .setHTML("<p>Lincoln Memorial!</p>")
+              .addTo(map);
 
-            var PSmarker = new mapboxgl.Marker()
-              .setLngLat([127.754662, 26.316855])
-              .addTo(map)
-              .setPopup(PSpopup);
-            });
-
-            restaurants = [
-              {
-                _id: 0,
-                name: "Johnny Rad's Pizzeria",
-                LngLat: [-76.586567, 39.285894],
-              },
-              {
-                _id: 1,
-                name: "Black Sheep Restaurant",
-                LngLat: [-81.680841, 30.312739]
-              },
-              {
-                _id: 2,
-                name: "Pizza Sun Okinawa"
-              }
-            ];
-
-            // 4. Using the mouse wheel (or scroll) you can change the zoom level. 
-            // yes
-            
-            // 7. 
-            map.on('click', function() {
-              var JRpopup = new mapboxgl.Popup()
-                .setLngLat([-76.586567, 39.285894])
-                .setHTML("<p>Johnny Rad's Pizzaria</p>")
-                .addTo(map);
-
-              var BSpopup = new mapboxgl.Popup()
-                .setLngLat([-81.680841, 30.312739])
-                .setHTML("<p>Black Sheep Restaurant</p>")
-                .addTo(map);
-
-              var PSpopup = new mapboxgl.Popup()
-                .setLngLat([127.754662, 26.316855])
-                .setHTML("<p>Pizza Sun Okinawa</p>")
-                .addTo(map);
-            })
-          
           </script>
+
         </article>
       </section>
     </main>
