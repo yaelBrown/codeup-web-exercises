@@ -57,6 +57,8 @@
               .setPopup(PSpopup);
             });
 
+
+            // Array and forLoop
             restaurants = [
               {
                 _id: 0,
@@ -73,6 +75,15 @@
                 name: "Pizza Sun Okinawa"
               }
             ];
+
+            function mapRestaurants(item, index) {
+              let name = item.name;
+              let address = item.LngLat;
+
+              geoChanger(name, mapBoxToken);
+            }
+
+            restaurants.forEach(mapRestaurants);
 
             // 4. Using the mouse wheel (or scroll) you can change the zoom level. 
             // yes
