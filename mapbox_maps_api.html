@@ -26,10 +26,13 @@
       <section>
         <article>
           <!-- Mapbox boilerplate -->
-
           <div id='map' style='width: 100vw; height: 100vh;'></div>
+          
+          <!-- Mapbox Key -->
+          <script src="./js/Key.js"></script>
+
           <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoieWFlbGJyb3duIiwiYSI6ImNqemVidGhsMjAwc2szZW8wbW51bTFwN2gifQ.Xps4U82N0BsZxh79qcYdRw';
+            mapboxgl.accessToken = mapBoxToken;
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v9',
