@@ -20,48 +20,37 @@
     <title>Mapbox Maps API</title>
   </head>
   <body>
-    <!-- Nav Section -->
-    <nav>
-      x
-    </nav>
-
-    <!-- Header Section -->
-    <header>
-      y
-    </header>
 
     <!-- Main Section -->
     <main>
       <section>
         <article>
-          
 
           <!-- Mapbox boilerplate -->
+          <div id='map' style='width: 100vw; height: 100vh;'></div>
 
-          <div id='map' style='width: 400px; height: 300px;'></div>
           <script>
             mapboxgl.accessToken = 'pk.eyJ1IjoieWFlbGJyb3duIiwiYSI6ImNqemVidGhsMjAwc2szZW8wbW51bTFwN2gifQ.Xps4U82N0BsZxh79qcYdRw';
+
+            function zoomOut() {
+              map.zoom = 10;
+            }
+
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v9',
-                zoom: 18,
-                center: [-76.586567, 39.285894]
+                zoom: 16,
+                center: [-76.465035, 39.329763]
             });
 
-            var JRmarker = new mapboxgl.Marker()
-              .setLngLat([-76.586567, 39.285894])
-              .addTo(map)
-              .setPopup(JRpopup);
+            map.on('load', () => {
+              setTimeout(function() {
+                map.setZoom(3);
+                map.setStyle('mapbox://styles/mapbox/satellite-v9');
+                map.setCenter([-100, 38]);
+              }, 5000);
+            });
 
-            var JRpopup = new mapboxgl.Popup()
-              .setLngLat([-76.586567, 39.285894])
-              .setHTML("<p>Johnny Rad's Pizzaria</p>")
-              .addTo(map);
-
-            // 4. Using the mouse wheel (or scroll) you can change the zoom level. 
-
-            // 7. 
-          
           </script>
 
 
