@@ -25,3 +25,22 @@ $('h1, p, li')
 // selects first item if 2 of the same id tags are used. Ignores the rest.
 
 // element does not get the border, because gets border
+
+
+
+
+
+
+// Event handlers
+
+$('h1').click(() => {
+  $('h1').css("background-color", "green");
+});
+
+$('p').dblclick(() => {
+  $('p').css("font-size", "18px");
+});
+
+$('li').hover(() => {
+  $('li').css("color", "red");
+});
