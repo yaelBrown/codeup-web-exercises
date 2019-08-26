@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>attributes and css exercise</title>
+    <style>
+      dd {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+      }
+
+      .invisable {
+        display: none;
+      }
+
+      dt {
+        font-size: 3em;
+      }
+
+      .border {
+        border: 2px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>10 Facts about National Parks</h1>
+    <dl>
+      <dt>1.</dt>
+      <dd class="invisable">National parks are home to a former federal prison, Alcatraz in Golden Gate National Recreation Area, California, and a leper colony, Molokai Island Hansen's Disease Settlement in Kalaupapa National Historic Site, Hawaii.</dd>
+
+      <dt>2.</dt>
+      <dd class="invisable">Forty million years of mammalian history is preserved in fossils at the John Day Fossil Beds National Monument in Oregon.</dd>
+      
+      <dt>3.</dt>
+      <dd class="invisable">National parks and national monuments are sometimes confused. National parks are chosen for their natural beauty, unique geological features, and unusual ecosystems. </dd>
+
+      <dt>4.</dt>
+      <dd class="invisable">The Yellowstone Caldera, Yellowstone National Park, is a super volcano that is responsible for three of the world’s six biggest volcano eruptions. </dd>
+
+      <dt>5.</dt>
+      <dd class="invisable">The National Park of American Samoa is the only National Park Service site south of the equator. It covers 13,500 total acres: 9,500 land acres and 4,000 marine acres, which are mostly coral reefs.</dd>
+
+      <dt>6.</dt>
+      <dd class="invisable">National parks are home to a former federal prison, Alcatraz in Golden Gate National Recreation Area, California, and a leper colony, Molokai Island Hansen's Disease Settlement in Kalaupapa National Historic Site, Hawaii.</dd>
+
+      <dt>7.</dt>
+      <dd class="invisable">The national parks are home and habitat to more than 400 endangered or threatened plant and animal species.</dd>
+
+      <dt>8.</dt>
+      <dd class="invisable">Seneca Falls National Park in New York is the location of the First Women’s Rights Conventions, which discussed expanding rights of women in the mid-19th century.</dd>
+
+      <dt>9.</dt>
+      <dd class="invisable">Wind Cave National Park in South Dakota is the first cave to be named a national park in the world.</dd>
+
+      <dt>10.</dt>
+      <dd class="invisable">Located 70 miles from Key West in the Gulf of Mexico, Dry Tortugas National Park is a collection of seven tiny islands that can be reached only by boat or plane, making it the country's most remote national park. </dd>
+    </dl>
+
+
+    <script src="./js/jquery-2.2.4.js"></script>
+    <script>
+      'use strict';
+      $(document).ready((e) => {
+
+        $('dt').on('click', () => {
+          // $(this).toggleClass('invisable');
+          $(this).css("backgroundColor", "green");
+        })
+      });
+    </script>
+  </body>
+
+</html>
