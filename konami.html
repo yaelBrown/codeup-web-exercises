@@ -4,10 +4,27 @@
     <title>Konami Code</title>
 </head>
 <body>
-    <h1>Konami Code</h1>
-    <audio id="myAudio">
-      <source src="snd/crap.wav">
-    </audio>
+    <div class="container">
+      <div class="back" style="z-index: 1"></div>
+        <h1>Konami Code</h1>
+        <audio id="myAudio">
+          <source src="snd/crap.wav">
+        </audio>
+
+        <audio id="dab">
+          <source src="snd/lookAtDab.ogg">
+        </audio>
+
+        <center>
+          <div id="dabbing" style="display: none; z-index: 10">
+            <img src="img/dab1.gif">
+            <img src="img/dab2.gif" alt="" srcset="">
+            <img src="img/dab3.gif" alt="">
+            <img src="img/dab4.gif" alt="">
+            <img src="img/dab5.gif" alt="">
+          </div>
+        </center>
+    </div>
 
 <!-- Add jquery -->
 <script src="./js/jquery-2.2.4.js"></script>
@@ -16,14 +33,16 @@
       
       // Declare variables
       let audio = document.getElementById("myAudio");
+      let dabben = document.getElementById("dab");
       let keyPattern = [];
       let code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
       let crap = [67, 82, 65, 80];
+      let dab = [68, 65, 66];
       
+      // Method checks code that was entered 
       const checkCode = (pattern) => {
         console.log("pattern checked was: " + pattern);
         if (JSON.stringify(code) == JSON.stringify(pattern)) {
-          alert("You have added 30 lives!");
           $('body').css("background-color", "red");
           $('body').css("color", "white");
         } else if (JSON.stringify(crap) === JSON.stringify(pattern)) {
@@ -33,11 +52,47 @@
             "backgroundSize": "cover"
           });
           $('h1').css("display", "none");
+        } else if (JSON.stringify(dab) === JSON.stringify(pattern)) {
+          $('#dabbing').css("display", "block");
+          $('h1').css("display", "none");
+          dabben.play();
+          changeBgColors();
         } else {
           console.log("That was not the pattern!");
           // keyPattern = [];
         }
       };
+      
+      // change bg colors
+      const changeBgColors = () => {
+        var colors = ['#FCDFB5', '#FFCBCB', '#DBFFDB', '#FFFFCD', '#DEDFFF','#FCDFB5'];
+        var i = 0;
+        var cont = $('div.container');
+        var back = $('div.back');
+        back.css('opacity', 1);
+        back.css('backgroundColor', colors[0]); // start color , fades out
+        cont.css('backgroundColor', colors[1]); // target color
+        anim();
+        
+        function anim() {
+            if (i == colors.length - 1) {
+                i=0;
+                //return; // repeat ad infinitum
+            }
+            
+            back.css({
+                backgroundColor: colors[i],
+                opacity: 1
+            });
+            cont.css({
+                backgroundColor: colors[i+1]
+            });
+            i++;
+            back.stop().animate({
+                opacity: 0
+            }, 800, anim);
+        }
+      }
       
       // Run on keypress
       $(document).keyup(function(event){
@@ -47,6 +102,10 @@
           keyPattern.push(event.keyCode);
         };
         
+        if (keyPattern.length === dab.length) {
+          checkCode(keyPattern);
+        }
+
         if (keyPattern.length === crap.length) {
           checkCode(keyPattern);
         }
