@@ -101,7 +101,7 @@ addToDone("Exercise 9 is correct.")
 // Write the code necessary to produce a single array that holds all fruits then all vegetables in the order as they were sorted above.
 // Assign the result to a variable named fruitsAndVeggies.
 // *hint* the search engine search here would be "how to combine two arrays in JavaScript", for example.
-
+var fruitsAndVeggies = fruits.concat(vegetables);
 
 assert(fruitsAndVeggies, ['tomato', 'strawberry', 'mango', 'kiwi', 'guava', 'banana', 'broccoli', 'carrot', 'cauliflower', 'eggplant', 'tomato', 'zucchini'])
 addToDone("Exercise 10 is correct")
@@ -184,7 +184,9 @@ assert(plusTwo(0), 2, "zero plus 2 is two")
 
 // Exercise 11
 // Write a function definition for a function named addOne that takes in a number and returns that number plus one
-
+var addOne = (num) => {
+    return num++;
+};
 
 
 assert(addOne(2), 3, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -196,7 +198,9 @@ addToDone("Exercise 11 is correct.")
 
 // Exercise 12
 // Write a function definition named isPositive that takes in a number and returns true or false if that number is positive.
-
+var isPositive = (num) => {
+    return num > 0;
+}
 
 
 assert(isPositive(positiveOddNumber), true, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -208,7 +212,9 @@ addToDone("Exercise 12 is correct.")
 
 // Exercise 13
 // Write a function definition named isNegative that takes in a number and returns true or False if that number is negative.
-
+var isNegative = (num) => {
+    return num < 0;
+}
 
 
 assert(isNegative(positiveOddNumber), false, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -220,6 +226,14 @@ addToDone("Exercise 13 is correct.")
 
 // Exercise 14
 // Write a function definition named isOdd that takes in a number and returns true or false if that number is odd.
+var isOdd = (num) => {
+    if (num % 2 === 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 assert(isOdd(positiveOddNumber), true, "Ensure that the function is defined, named properly, and returns the correct value");
 assert(isOdd(positiveEvenNumber), false, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -229,6 +243,14 @@ addToDone("Exercise 14 is correct.")
 
 // Exercise 15
 // Write a function definition named isEven that takes in a number and returns true or false if that number is even.
+var isEven = (num) => {
+    if (num % 2 === 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 
 assert(isEven(2), true, "Ensure that the function is defined, named properly, and returns the correct value");
 assert(isEven(positiveOddNumber), false, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -240,6 +262,9 @@ addToDone("Exercise 15 is correct.")
 
 // Exercise 16
 // Write a function definition named identity that takes in any argument and returns that argument's value. Don't overthink this one!
+var identity = (val) => {
+    return val
+}
 
 assert(identity(fruits), fruits, "Ensure that the function is defined, named properly, and returns the correct value");
 assert(identity(vegetables), vegetables, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -252,7 +277,13 @@ addToDone("Exercise 16 is correct.")
 
 // Exercise 17
 // Write a function definition named isPositiveOdd that takes in a number and returns true or false if the value is both greater than zero and odd
-
+var isPositiveOdd = (num) => {
+    if (num > 0 && num % 2 === 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 assert(isPositiveOdd(3), true, "Double check your syntax and logic" );
@@ -265,6 +296,15 @@ addToDone("Exercise 17 is correct.")
 
 // Exercise 18
 // Write a function definition named isPositiveEven that takes in a number and returns true or false if the value is both greater than zero and even
+var isPositiveEven = (num) => {
+    if (num > 0 && num % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 assert(isPositiveEven(4), true, "Double check your syntax and logic" );
 assert(isPositiveEven(positiveOddNumber), false, "Double check your syntax and logic");
@@ -276,6 +316,14 @@ addToDone("Exercise 18 is correct.")
 
 // Exercise 19
 // Write a function definition named isNegativeOdd that takes in a number and returns true or false if the value is both less than zero and odd.
+var isNegativeOdd = (num) => {
+    if (num < 0 && num % 2 === -1) {
+      return true
+    } else {
+      return false
+    }
+}
+
 
 assert(isNegativeOdd(-3), true, "Double check your syntax and logic" );
 assert(isNegativeOdd(positiveOddNumber), false, "Double check your syntax and logic");
@@ -287,6 +335,15 @@ addToDone("Exercise 19 is correct.")
 
 // Exercise 20
 // Write a function definition named isNegativeEven that takes in a number and returns true or false if the value is both less than zero and even.
+var isNegativeEven = (num) => {
+    if (num < 0 && num % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 assert(isNegativeEven(-4), true, "Double check your syntax and logic" );
 assert(isNegativeEven(positiveOddNumber), false, "Double check your syntax and logic");
@@ -300,6 +357,11 @@ addToDone("Exercise 20 is correct.")
 // Exercise 21
 // Write a function definition named half that takes in a number and returns half the provided number.
 
+var half = (num) => {
+    return num / 2;
+}
+
+
 assert(half(4), 2);
 assert(half(5), 2.5);
 assert(half(positiveOddNumber), positiveOddNumber / 2);
@@ -312,6 +374,10 @@ addToDone("Exercise 21 is correct.")
 
 // Exercise 22
 // Write a function definition named double that takes in a number and returns double the provided number.
+var double = (num) => {
+    return num * 2;
+}
+
 
 assert(double(4), 8)
 assert(double(5), 10)
@@ -325,6 +391,10 @@ addToDone("Exercise 22 is correct.")
 
 // Exercise 23
 // Write a function definition named triple that takes in a number and returns triple the provided number.
+var triple = (num) => {
+    return num * 3;
+}
+
 
 assert(triple(4), 12);
 assert(triple(5), 15);
@@ -338,6 +408,10 @@ addToDone("Exercise 23 is correct.")
 
 // Exercise 24
 // Write a function definition named reverseSign that takes in a number and returns the provided number but with the sign reversed.
+var reverseSign = (num) => {
+    return -(num);
+}
+
 
 assert(reverseSign(4), -4);
 assert(reverseSign(-5), 5);
@@ -351,6 +425,10 @@ addToDone("Exercise 24 is correct.")
 
 // Exercise 25
 // Write a function definition named absoluteValue that takes in a number and returns the absolute value of the provided number
+var absoluteValue = (num) => {
+    return Math.abs(num);
+}
+
 
 assert(absoluteValue(4), 4);
 assert(absoluteValue(-5), 5);
@@ -364,6 +442,14 @@ addToDone("Exercise 25 is correct.")
 
 // Exercise 26
 // Write a function definition named isMultipleOfThree that takes in a number and returns true or false if the number is evenly divisible by 3.
+var isMultipleOfThree = (num) => {
+    if (num % 3 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 assert(isMultipleOfThree(3), true);
 assert(isMultipleOfThree(15), true);
@@ -377,6 +463,15 @@ addToDone("Exercise 26 is correct.")
 
 // Exercise 27
 // Write a function definition named isMultipleOfFive that takes in a number and returns true or false if the number is evenly divisible by 5.
+var isMultipleOfFive = (num) => {
+    if (num % 5 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 assert(isMultipleOfFive(3), false);
 assert(isMultipleOfFive(15), true);
@@ -389,6 +484,15 @@ addToDone("Exercise 27 is correct.")
 
 // Exercise 28
 // Write a function definition named isMultipleOfBothThreeAndFive that takes in a number and returns true or false if the number is evenly divisible by both 3 and 5.
+var isMultipleOfBothThreeAndFive = (num) => {
+    if (num % 3 === 0 && num % 5 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 assert(isMultipleOfBothThreeAndFive(15), true);
 assert(isMultipleOfBothThreeAndFive(45), true);
@@ -402,6 +506,10 @@ addToDone("Exercise 28 is correct.")
 
 // Exercise 29
 // Write a function definition named square that takes in a number and returns the number times itself.
+var square = (num) => {
+    return num * num;
+}
+
 
 assert(square(3), 9);
 assert(square(2), 4);
@@ -413,6 +521,10 @@ addToDone("Exercise 29 is correct.")
 
 // Exercise 30
 // Write a function definition named add that takes in two numbers and returns the sum.
+var add = (augend, addend) => {
+    return augend + addend;
+}
+
 
 
 assert(add(3, 2), 5);
@@ -424,6 +536,11 @@ addToDone("Exercise 30 is correct.")
 
 // Exercise 31
 // Write a function definition named cube that takes in a number and returns the number times itself, times itself.
+var cube = (num) => {
+    return num * num * num;
+}
+
+
 
 assert(cube(3), 27);
 assert(cube(2), 8);
@@ -435,7 +552,9 @@ addToDone("Exercise 31 is correct.")
 
 // Exercise 32
 // Write a function definition named squareRoot that takes in a number and returns the square root of the provided number
-
+var squareRoot = (num) => {
+    return Math.sqrt(num);
+}
 
 assert(squareRoot(4), 2.0);
 assert(squareRoot(64), 8.0);
@@ -447,6 +566,9 @@ addToDone("Exercise 32 is correct.")
 
 // Exercise 33
 // Write a function definition named subtract that takes in two numbers and returns the first minus the second argument.
+var subtract = (minuend, subtrahend) => {
+    return minuend - subtrahend;
+}
 
 
 assert(subtract(8, 6), 2);
@@ -458,6 +580,9 @@ addToDone("Exercise 33 is correct.")
 
 // Exercise 34
 // Write a function definition named multiply that takes in two numbers and returns the first times the second argument.
+var multiply = (multiplicand, multi) => {
+    return multiplicand * multi;
+}
 
 assert(multiply(2, 1), 2);
 assert(multiply(3, 5), 15);
@@ -468,7 +593,9 @@ addToDone("Exercise 34 is correct.")
 
 // Exercise 35
 // Write a function definition named divide that takes in two numbers and returns the first argument divided by the second argument.
-
+var divide = (dividend, divisor) => {
+    return dividend / divisor;
+}
 
 assert(divide(27, 9), 3);
 assert(divide(15, 3), 5);
@@ -479,6 +606,10 @@ addToDone("Exercise 35 is correct.")
 
 // Exercise 36
 // Write a function definition named quotient that takes in two numbers and returns only the quotient first argument quotient by the second argument.
+var quotient = (dividend, divisor) => {
+    return Math.floor(dividend / divisor);
+}
+
 
 assert(quotient(27, 9), 3)
 assert(quotient(5, 2), 2)
@@ -488,6 +619,9 @@ addToDone("Exercise 36 is correct.")
 
 // Exercise 37
 // Write a function definition named remainder that takes in two numbers and returns the remainder of first argument divided by the second argument.
+var remainder = (num1, num2) => {
+    return num1 % num2;
+}
 
 assert(remainder(3, 3), 0);
 assert(remainder(5, 2), 1);
@@ -498,6 +632,9 @@ addToDone("Exercise 37 is correct.")
 
 // Exercise 38
 // Write a function definition named sumOfSquares that takes in two numbers, squares each number, then returns the sum of both squares.
+var sumOfSquare = (num1, num2) => {
+    return (num1 * num1) + (num2 * num2);
+}
 
 assert(sumOfSquares(3, 2), 13);
 assert(sumOfSquares(5, 2), 29);
@@ -508,6 +645,9 @@ addToDone("Exercise 38 is correct.")
 
 // Exercise 39
 // Write a function definition named timesTwoPlusThree that takes in a number, multiplies it by two, adds 3 and returns the result.
+var timesTwoPlusThree = (num) => {
+    return (num * 2) + 3;
+}
 
 assert(timesTwoPlusThree(0), 3);
 assert(timesTwoPlusThree(1), 5);
@@ -519,6 +659,9 @@ addToDone("Exercise 39 is correct.")
 
 // Exercise 40
 // Write a function definition named areaOfRectangle that takes in two numbers and returns the product.
+var areaOfRectangle = (num1, num2) => {
+    return multiply(num1, num2);
+}
 
 assert(areaOfRectangle(1, 3), 3);
 assert(areaOfRectangle(5, 2), 10);
@@ -530,7 +673,9 @@ addToDone("Exercise 40 is correct.")
 
 // Exercise 41
 // Write a function definition named areaOfCircle that takes in a number representing a circle's radius and returns the area of the circle
-
+var areaOfCircle = (num) => {
+    return (num * num) * Math.PI;
+}
 
 assert(areaOfCircle(3), 28.274333882308138);
 assert(areaOfCircle(5), 78.53981633974483);
@@ -540,6 +685,9 @@ addToDone("Exercise 41 is correct.")
 
 // Exercise 42
 // Write a function definition named circumference that takes in a number representing a circle's radius and returns the circumference.
+var circumference = (radius) => {
+    return (radius * 2) * Math.PI;
+}
 
 assert(circumference(3), 18.84955592153876);
 assert(circumference(5), 31.41592653589793);
@@ -550,6 +698,24 @@ addToDone("Exercise 42 is correct.")
 
 // Exercise 43
 // Write a function definition named isVowel that takes in value and returns true if the value is a, e, i, o, u in upper or lower case.
+var isVowel = (ltr) => {
+    ltr = ltr.toLowerCase();
+
+    switch (ltr) {
+      case "a":
+      case "e":
+      case "i":
+      case "o":
+      case "u":
+        return true;
+        break;
+
+      default:
+        return false;
+        break;
+    }
+  }
+
 
 assert(isVowel("a"), true);
 assert(isVowel("U"), true);
@@ -561,6 +727,25 @@ addToDone("Exercise 43 is correct.")
 
 // Exercise 44
 // Write a function definition named hasVowels that takes in value and returns true if the string contains any vowels.
+var hasVowels = (text) => {
+    if(text && typeof text == 'string') {
+      let vowels = "aeiouAEIOU".split('');
+      let vowelString = '';
+      for(let letter of text.split('')) {
+        if(vowels.includes(letter)) {
+          vowelString += letter;
+        }
+      }
+      return vowelString;
+    }
+
+    if (vowelString.length === 0) {
+      return false;
+    } else {
+      return true;
+  }
+}
+
 
 assert(hasVowels("banana"), true);
 assert(hasVowels("ubuntu"), true);
@@ -571,6 +756,19 @@ addToDone("Exercise 44 is correct.")
 
 // Exercise 45
 // Write a function definition named countVowels that takes in value and returns the count of the nubmer of vowels in a sequence.
+var countVowels = (str) => {
+    let vowel_list = 'aeiou';
+    let vcount = 0
+
+    for (var i = 0; i < str.length; i++) {
+        if (vowel_list.indexOf(str[i]) !== -1) {
+            vcount++;
+        }
+    }
+
+    return vcount;
+}
+
 
 assert(countVowels("banana"), 3)
 assert(countVowels("ubuntu"), 3)
