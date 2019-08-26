@@ -736,14 +736,12 @@ var hasVowels = (text) => {
           vowelString += letter;
         }
       }
-      return vowelString;
+      if (vowelString.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
-
-    if (vowelString.length === 0) {
-      return false;
-    } else {
-      return true;
-  }
 }
 
 
@@ -780,6 +778,8 @@ addToDone("Exercise 45 is correct.")
 
 // Exercise 46
 // Write a function definition named removeVowels that takes in string and returns the string without any vowels
+
+
 
 assert(removeVowels("banana"), "bnn");
 assert(removeVowels("ubuntu"), "bnt");

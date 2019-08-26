@@ -5,56 +5,56 @@
 </head>
 <body>
     <h1>Konami Code</h1>
+    <audio id="myAudio">
+      <source src="snd/crap.wav">
+    </audio>
 
-    <!-- Add jquery -->
-    <script src="./js/jquery-2.2.4.js"></script>
-    <script>
+<!-- Add jquery -->
+<script src="./js/jquery-2.2.4.js"></script>
+<script>
       "use strict";
-
+      
       // Declare variables
-      let code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+      let audio = document.getElementById("myAudio");
       let keyPattern = [];
-      let started = false;
-      let count = 0;
-
+      let code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+      let crap = [67, 82, 65, 80];
+      
       const checkCode = (pattern) => {
-        if (pattern === code) {
+        console.log("pattern checked was: " + pattern);
+        if (JSON.stringify(code) == JSON.stringify(pattern)) {
           alert("You have added 30 lives!");
           $('body').css("background-color", "red");
           $('body').css("color", "white");
-          started = false;
-        } else if (pattern !== code) {
-          started = false;
+        } else if (JSON.stringify(crap) === JSON.stringify(pattern)) {
+          audio.play();
+          $('body').css({
+            "background": "url('/img/duke3.webp')",
+            "backgroundSize": "cover"
+          });
+          $('h1').css("display", "none");
+        } else {
           console.log("That was not the pattern!");
+          // keyPattern = [];
         }
       };
-
+      
       // Run on keypress
       $(document).keyup(function(event){
         console.log(event.keyCode);
-
-        if (event.keyCode == 38) {
-          started = true;
-          console.log("You pressed up arrow");
+        
+        if (keyPattern.length < code.length) {
+          keyPattern.push(event.keyCode);
         };
-
-        if (started === true) {
-          if (keyPattern.length <= code.length) {
-            keyPattern.push(event.keyCode);
-            console.log(keyPattern);
-          }
+        
+        if (keyPattern.length === crap.length) {
+          checkCode(keyPattern);
         }
-
+        
         if (keyPattern.length === code.length) {
-          console.log("length is equal");
-          checkCode();
-        } else {
-          started = false;
+          checkCode(keyPattern);
         }
       });
-
-      // https://github.com/jenniferludwiczak/codeup-web-exercises/blob/master/konami.html
-
-    </script>
+      </script>
 </body>
 </html>

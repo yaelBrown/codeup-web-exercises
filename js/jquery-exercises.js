@@ -34,7 +34,7 @@ $('h1, p, li')
 // Event handlers
 
 $('h1').click(() => {
-  $('h1').css("background-color", "green");
+  $('h1').css({"background-color": "green", "color": "white"});
 });
 
 $('p').dblclick(() => {
@@ -43,4 +43,6 @@ $('p').dblclick(() => {
 
 $('li').hover(() => {
   $('li').css("color", "red");
+}, () => {
+  $('li').css("color", "black");
 });
