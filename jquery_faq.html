@@ -18,10 +18,15 @@
       .border {
         border: 2px solid green;
       }
+
+      .highlight {
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
     <h1>10 Facts about National Parks</h1>
+    <button onClick="toggleVisibility();">Toggle invisable</button>
     <dl>
       <dt>1.</dt>
       <dd class="invisable">National parks are home to a former federal prison, Alcatraz in Golden Gate National Recreation Area, California, and a leper colony, Molokai Island Hansen's Disease Settlement in Kalaupapa National Historic Site, Hawaii.</dd>
@@ -58,13 +63,26 @@
     <script src="./js/jquery-2.2.4.js"></script>
     <script>
       'use strict';
-      $(document).ready((e) => {
+      
+      let toggleVisibility = () => {
+        $('button').on('click', () => {
+          $('dd').toggleClass('invisable');
+        })
+      };
 
+      $('dt').click('click', () => {
+        $(this).toggleClass('highlight');
+        console.log("dt is pressed");
+      });
+
+      $(document).ready((e) => {
         $('dt').on('click', () => {
           // $(this).toggleClass('invisable');
           $(this).css("backgroundColor", "green");
         })
       });
+
+
     </script>
   </body>
 
