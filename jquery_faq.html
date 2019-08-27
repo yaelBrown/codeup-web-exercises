@@ -70,16 +70,18 @@
         })
       };
 
-      $('dt').click('click', () => {
-        $(this).toggleClass('highlight');
-        console.log("dt is pressed");
-      });
 
       $(document).ready((e) => {
         $('dt').on('click', () => {
           // $(this).toggleClass('invisable');
           $(this).css("backgroundColor", "green");
-        })
+        });
+
+        // Bonus
+        $('dt').click(function() {
+          $(this).toggleClass("highlight");
+          console.log("dt is pressed");
+        });
       });
 
 
