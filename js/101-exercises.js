@@ -184,9 +184,9 @@ assert(plusTwo(0), 2, "zero plus 2 is two")
 
 // Exercise 11
 // Write a function definition for a function named addOne that takes in a number and returns that number plus one
-var addOne = (num) => {
-    return num++;
-};
+function addOne(num) {
+  return num+1;
+}
 
 
 assert(addOne(2), 3, "Ensure that the function is defined, named properly, and returns the correct value");
@@ -227,7 +227,12 @@ addToDone("Exercise 13 is correct.")
 // Exercise 14
 // Write a function definition named isOdd that takes in a number and returns true or false if that number is odd.
 var isOdd = (num) => {
-    if (num % 2 === 1) {
+    if (num <= 0) {
+      num = Math.abs(num);
+    }
+
+    console.log(num)
+    if (Math.abs(num) % 2 === 1) {
         return true;
     } else {
         return false;
@@ -244,6 +249,10 @@ addToDone("Exercise 14 is correct.")
 // Exercise 15
 // Write a function definition named isEven that takes in a number and returns true or false if that number is even.
 var isEven = (num) => {
+    if (num <= 0) {
+      num = Math.abs(num);
+    }
+
     if (num % 2 === 1) {
         return false;
     } else {
@@ -632,7 +641,7 @@ addToDone("Exercise 37 is correct.")
 
 // Exercise 38
 // Write a function definition named sumOfSquares that takes in two numbers, squares each number, then returns the sum of both squares.
-var sumOfSquare = (num1, num2) => {
+var sumOfSquares = (num1, num2) => {
     return (num1 * num1) + (num2 * num2);
 }
 
@@ -778,6 +787,25 @@ addToDone("Exercise 45 is correct.")
 
 // Exercise 46
 // Write a function definition named removeVowels that takes in string and returns the string without any vowels
+var removeVowels = (str) => {
+  str = str.split("");
+  var rmVow = [];
+  var re = /aeiou/g;
+  var nothing = null;
+
+
+  str.forEach(function(e) {
+    if (e === "a" || e === "e" || e === "i" || e === "o" || e === "u") {
+      nothing = null;
+    } else {
+      rmVow.push(e);
+    }
+  });
+
+  console.log(rmVow);
+  rmVow = rmVow.join("");
+  return rmVow;
+}
 
 
 
@@ -790,6 +818,11 @@ addToDone("Exercise 46 is correct.")
 
 // Exercise 47
 // Write a function definition named startsWithVowel that takes in string and true if the string starts with a vowel
+var startsWithVowel = (str) => {
+  return (str[0] === "a" || str[0] === "e" || str[0] === "i" || str[0] === "o" || str[0] === "u");
+}
+
+
 
 assert(startsWithVowel("ubuntu"), true);
 assert(startsWithVowel("banana"), false);
@@ -799,7 +832,9 @@ addToDone("Exercise 47 is correct.")
 
 // Exercise 48
 // Write a function definition named endsWithVowel that takes in string and true if the string ends with a vowel
-
+var endsWithVowel = (str) => {
+  return (str[str.length-1] === "a" || str[str.length-1] === "e" || str[str.length-1] === "i" || str[str.length-1] === "o" || str[str.length-1] === "u");
+}
 
 assert(endsWithVowel("ubuntu"), true);
 assert(endsWithVowel("banana"), true);
@@ -810,6 +845,11 @@ addToDone("Exercise 48 is correct.")
 
 // Exercise 49
 // Write a function definition named startsAndEndsWithVowel that takes in string and returns true if the string starts and ends with a vowel
+var startsAndEndsWithVowel = (str) => {
+  return ((str[0] === "a" || str[0] === "e" || str[0] === "i" || str[0] === "o" || str[0] === "u") && (str[str.length-1] === "a" || str[str.length-1] === "e" || str[str.length-1] === "i" || str[str.length-1] === "o" || str[str.length-1] === "u"));
+}
+
+
 
 assert(startsAndEndsWithVowel("ubuntu"), true);
 assert(startsAndEndsWithVowel("banana"), false);
@@ -819,6 +859,10 @@ addToDone("Exercise 49 is correct.")
 
 // Exercise 50
 // Write a function definition named first that takes in sequence and returns the first value of that sequence.
+var first = (input) => {
+  return input[0];
+}
+
 
 assert(first("ubuntu"), "u");
 assert(first([1, 2, 3]), 1);
@@ -830,6 +874,10 @@ addToDone("Exercise 50 is correct.")
 
 // Exercise 51
 // Write a function definition named second that takes in sequence and returns the second value of that sequence.
+var second = (input) => {
+  return input[1];
+}
+
 
 assert(second("ubuntu"), "b");
 assert(second([1, 2, 3]), 2);
@@ -839,6 +887,10 @@ addToDone("Exercise 51 is correct.")
 
 // Exercise 52
 // Write a function definition named third that takes in sequence and returns the third value of that sequence.
+var third = (input) => {
+  return input[2];
+}
+
 
 assert(third("ubuntu"), "u");
 assert(third([1, 2, 3]), 3);
@@ -848,6 +900,9 @@ addToDone("Exercise 52 is correct.")
 
 // Exercise 53
 // Write a function definition named forth that takes in sequence and returns the forth value of that sequence.
+var forth = (input) => {
+  return input[3];
+}
 
 assert(forth("ubuntu"), "n");
 assert(forth([1, 2, 3, 4]), 4);
@@ -857,6 +912,9 @@ addToDone("Exercise 53 is correct.")
 
 // Exercise 54
 // Write a function definition named last that takes in sequence and returns the last value of that sequence.
+var last = (input) => {
+  return input[input.length - 1];
+}
 
 assert(last("ubuntu"), "u");
 assert(last([1, 2, 3, 4]), 4);
@@ -867,6 +925,9 @@ addToDone("Exercise 54 is correct.")
 
 // Exercise 55
 // Write a function definition named secondToLast that takes in sequence and returns the second to last value of that sequence.
+var secondToLast = (input) => {
+  return input[input.length - 2];
+}
 
 assert(secondToLast("ubuntu"), "t");
 assert(secondToLast([1, 2, 3, 4]), 3);
@@ -877,6 +938,9 @@ addToDone("Exercise 55 is correct.")
 
 // Exercise 56
 // Write a function definition named thirdToLast that takes in sequence and returns the third to last value of that sequence.
+var thirdToLast = (input) => {
+  return input[input.length - 3];
+}
 
 assert(thirdToLast("ubuntu"), "n");
 assert(thirdToLast([1, 2, 3, 4]), 2);
@@ -887,6 +951,13 @@ addToDone("Exercise 56 is correct.")
 
 // Exercise 57
 // Write a function definition named firstAndSecond that takes in sequence and returns the first and second value of that sequence as an array
+var firstAndSecond = (input) => {
+  let temp = [];
+  temp.push(input[0]);
+  temp.push(input[1]);
+  return temp;
+}
+
 
 assert(firstAndSecond([1, 2, 3, 4]), [1, 2]);
 assert(firstAndSecond(["JS", "is", "awesome"]), ["JS", "is"]);
@@ -896,6 +967,12 @@ addToDone("Exercise 57 is correct.")
 
 // Exercise 58
 // Write a function definition named firstAndLast that takes in sequence and returns the first and last value of that sequence as an array
+var firstAndLast = (input) => {
+  let temp = [];
+  temp.push(input[0]);
+  temp.push(input[input.length - 1]);
+  return temp;
+}
 
 assert(firstAndLast([1, 2, 3, 4]), [1, 4]);
 assert(firstAndLast(["JS", "is", "awesome"]), ["JS", "awesome"]);
@@ -906,6 +983,17 @@ addToDone("Exercise 58 is correct.")
 
 // Exercise 59
 // Write a function definition named firstToLast that takes in sequence and returns the sequence with the first value moved to the end of the sequence.
+var firstToLast = (arr) => {
+  let temp = [];
+  arr.forEach(function(e,i) {
+    if (i >= 1) {
+      temp.push(e)
+    };
+  });
+  temp.push(arr[0])
+  return temp;
+}
+
 
 assert(firstToLast([1, 2, 3, 4]), [2, 3, 4, 1]);
 assert(firstToLast(["JS", "is", "awesome"]), ["is", "awesome", "JS"]);
@@ -916,6 +1004,14 @@ addToDone("Exercise 59 is correct.")
 
 // Exercise 60
 // Write a function definition named sumAll that takes in sequence of numbers and returns all the numbers added together.
+var sumAll = (arr) => {
+  var sum = 0;
+  arr.forEach(function(e){
+    sum += e;
+  })
+  return sum;
+}
+
 
 assert(sumAll([1, 2, 3, 4]), 10);
 assert(sumAll([3, 3, 3]), 9);
@@ -926,6 +1022,14 @@ addToDone("Exercise 60 is correct.")
 
 //  Exercise 61
 //  Write a function definition named mean that takes in sequence of numbers and returns the average value
+var mean = (arr) => {
+  var sum = 0;
+  arr.forEach(function(e){
+    sum += e;
+  })
+  return sum / arr.length;
+}
+
 
 assert(mean([1, 2, 3, 4]), 2.5);
 assert(mean([3, 3, 3]), 3);
@@ -936,6 +1040,12 @@ addToDone("Exercise 61 is correct.")
 
 // Exercise 62
 // Write a function definition named median that takes in sequence of numbers and returns the average value
+var median = arr => {
+  let mid = Math.floor(arr.length / 2),
+    nums = [...arr].sort((a, b) => a - b);
+  return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+};
+
 
 assert(median([1, 2, 3, 4, 5]), 3.0);
 assert(median([1, 2, 3]), 2.0);
@@ -946,7 +1056,10 @@ addToDone("Exercise 62 is correct.")
 
 // Exercise 63
 // Write a function definition named maxMinusMin that takes in an array of numbers and returns the difference of the maximum minus theminimum.
-
+var maxMinusMin = (arr) => {
+  var temp = arr.sort();
+  return temp[temp.length - 1] - temp[0];
+}
 
 assert(maxMinusMin([1, 2, 2, 8, 3, 4]), 7);
 assert(maxMinusMin([1, 1, 2, 3, 9]), 8);
