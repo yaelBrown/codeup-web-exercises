@@ -1069,6 +1069,14 @@ addToDone("Exercise 63 is correct.")
 
 // Exercise 64
 // Write a function definition named productOfAll that takes in sequence of numbers and returns the product of multiplying all the numbers together
+var productOfAll = (arr) => {
+  let product = 1;
+  arr.forEach(function(e) {
+    product *= e;
+  })
+  return product;
+}
+
 
 assert(productOfAll([1, 2, 3]), 6);
 assert(productOfAll([3, 4, 5]), 60);
@@ -1078,7 +1086,9 @@ addToDone("Exercise 64 is correct.")
 
 // Exercise 65
 // Write a function definition named getHighestNumber that takes in sequence of numbers and returns the largest number.
-
+var getHighestNumber = (arr) => {
+  return Math.max(...arr);
+}
 
 assert(getHighestNumber([1, 2, 3]), 3);
 assert(getHighestNumber([1, 5, 2, 3, 4]), 5);
@@ -1090,7 +1100,9 @@ addToDone("Exercise 65 is correct.")
 
 // Exercise 66
 // Write a function definition named getSmallestNumber that takes in sequence of numbers and returns the smallest number.
-
+var getSmallestNumber = (arr) => {
+  return Math.min(...arr);
+}
 
 assert(getSmallestNumber([1, 2, 3]), 1);
 assert(getSmallestNumber([3, 5, 9, 8, 1]), 1);
@@ -1100,6 +1112,16 @@ addToDone("Exercise 66 is correct.")
 
 // Exercise 67
 // Write a function definition named onlyOddNumbers that takes in sequence of numbers and returns the odd numbers in an array.
+var onlyOddNumbers = (arr) => {
+  var temp = [];
+  arr.forEach(function(e) {
+    if (e % 2 !== 0) {
+      temp.push(e);
+    }
+  })
+  return temp;
+}
+
 
 assert(onlyOddNumbers([1, 2, 3]), [1, 3]);
 assert(onlyOddNumbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]), [-5, -3, -1, 1, 3, 5]);
@@ -1110,6 +1132,16 @@ addToDone("Exercise 67 is correct.")
 
 // Exercise 68
 // Write a function definition named onlyEvenNumbers that takes in sequence of numbers and returns the even numbers in an array.
+var onlyEvenNumbers = (arr) => {
+  var temp = [];
+  arr.forEach(function(e) {
+    if (e % 2 === 0) {
+      temp.push(e);
+    }
+  })
+  return temp;
+}
+
 
 assert(onlyEvenNumbers([1, 2, 3]), [2]);
 assert(onlyEvenNumbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]), [-4, -2, 2, 4]);
@@ -1119,6 +1151,16 @@ addToDone("Exercise 68 is correct.")
 
 // Exercise 69
 // Write a function definition named onlyPositiveNumbers that takes in sequence of numbers and returns the positive numbers in an array.
+var onlyPositiveNumbers = (arr) => {
+  var temp = [];
+  arr.forEach(function(e) {
+    if (e > 0) {
+      temp.push(e);
+    }
+  })
+  return temp;
+}
+
 
 assert(onlyPositiveNumbers([1, 2, 3]), [1, 2, 3]);
 assert(onlyPositiveNumbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]), [1, 2, 3, 4, 5]);
@@ -1128,6 +1170,16 @@ addToDone("Exercise 69 is correct.")
 
 // Exercise 70
 // Write a function definition named onlyNegativeNumbers that takes in sequence of numbers and returns the negative numbers in an array.
+var onlyNegativeNumbers = (arr) => {
+  var temp = [];
+  arr.forEach(function(e) {
+    if (e < 0) {
+      temp.push(e);
+    }
+  })
+  return temp;
+}
+
 
 assert(onlyNegativeNumbers([1, 2, 3]), []);
 assert(onlyNegativeNumbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]), [-5, -4, -3, -2, -1]);
@@ -1138,6 +1190,16 @@ addToDone("Exercise 70 is correct.");
 
 // Exercise 71
 // Write a function definition named hasEvens that takes in sequence of numbers and returns true if there are any even numbers in the sequence
+var hasEvens = (arr) => {
+  var temp = false;
+  arr.forEach(function(e) {
+    if (e % 2 === 0) {
+      temp = true;
+    }
+  })
+  return temp;
+}
+
 
 assert(hasEvens([1, 2, 3]), true);
 assert(hasEvens([2, 5, 6]), true);
@@ -1149,6 +1211,16 @@ addToDone("Exercise 71 is correct.");
 
 // Exercise 72
 // Write a function definition named countEvens that takes in sequence of numbers and returns the number of even numbers
+var countEvens = (arr) => {
+  var count = 0;
+  arr.forEach(function(e) {
+    if (e % 2 == 0) {
+      count++;
+    }
+  })
+  return count;
+}
+
 
 assert(countEvens([1, 2, 3]), 1);
 assert(countEvens([2, 5, 6]), 2);
@@ -1159,6 +1231,17 @@ addToDone("Exercise 72 is correct.")
 
 // Exercise 73
 // Write a function definition named hasOdds that takes in sequence of numbers and returns true if there are any odd numbers in the sequence
+var hasOdds = (arr) => {
+  var count = false;
+
+  arr.forEach(function(e) {
+    if (e % 2 == 1) {
+      count = true;
+    }
+  })
+  return count;
+}
+
 
 assert(hasOdds([1, 2, 3]), true);
 assert(hasOdds([2, 5, 6]), true);
@@ -1169,6 +1252,15 @@ addToDone("Exercise 73 is correct.")
 
 // Exercise 74
 // Write a function definition named countOdds that takes in sequence of numbers and returns a count of the any odd numbers in the sequence
+var countOdds = (arr) => {
+  var count = 0;
+  arr.forEach(function(e) {
+    if (e % 2 == 1) {
+      count++;
+    }
+  })
+  return count;
+}
 
 assert(countOdds([1, 2, 3]), 2);
 assert(countOdds([2, 5, 6]), 1);
@@ -1179,6 +1271,16 @@ addToDone("Exercise 74 is correct.")
 
 // Exercise 75
 // Write a function definition named countNegatives that takes in sequence of numbers and returns a count of the number of negative numbers
+var countNegatives = (arr) => {
+  var count = 0;
+  arr.forEach(function(e) {
+    if (e < 0) {
+      count++;
+    }
+  })
+  return count;
+}
+
 
 assert(countNegatives([1, -2, 3]), 1);
 assert(countNegatives([2, -5, -6]), 2);
@@ -1188,6 +1290,16 @@ addToDone("Exercise 75 is correct.")
 
 // Exercise 76
 // Write a function definition named countPositives that takes in sequence of numbers and returns a count of the number of positive numbers
+var countPositives = (arr) => {
+  var count = 0;
+  arr.forEach(function(e) {
+    if (e > 0) {
+      count++;
+    }
+  })
+  return count;
+}
+
 
 assert(countPositives([1, -2, 3]), 2);
 assert(countPositives([2, -5, -6]), 1);
@@ -1198,6 +1310,7 @@ addToDone("Exercise 76 is correct.")
 
 // Exercise 77
 // Write a function definition named onlyPositiveEvens that takes in sequence of numbers and returns an array containing all the positive evens from the sequence
+
 
 assert(onlyPositiveEvens([1, -2, 3]), []);
 assert(onlyPositiveEvens([2, -5, -6]), [2]);
