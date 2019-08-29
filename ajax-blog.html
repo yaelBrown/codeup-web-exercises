@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title> AJAX Blog</title>
+
+    <!-- styling -->
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #posts {
+        margin-top: 3em;
+      }
+
+      .post-title {
+        padding: 1em;
+        margin-bottom: 1em;
+        width: 100%;
+        background-color: #efefef;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-shadow: 10px 10px 27px -22px rgba(0,0,0,0.75);
+      }
+
+      .post-content {
+        padding: 1em;
+        margin-bottom: 1em;
+        border-right: 2px solid #efefef;
+        border-bottom: 2px solid #efefef;
+        border-left: 2px solid #efefef;
+        box-shadow: 10px 10px 27px -22px rgba(0,0,0,0.75);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="posts"></div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-2.2.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script> 
+      'use strict';
+      
+      // verify it works
+      // console.log("inline js");
+      
+      // declare vars
+      var postStr = "";
+      var posts = document.getElementById("posts");
+      
+      // verify posts works
+      // posts.innerHTML = "this works"
+
+      $.ajax('/data/blog.json').done(function (data) {
+        console.log(data);    // verify data is recieved
+        data.forEach(function(e,i) {
+          postStr += '<div class="post-title">';
+          postStr += '<h3 class="post-title-title">' + e.title + '</h3>';
+          postStr += '<h4 class="post-title-date">' + e.date + '</h4>';
+          postStr += '</div>';
+          postStr += '<div class="post-content">';
+          postStr += e.content;
+          postStr += '</div>';
+        })
+      }).fail(function() {
+        console.log("function failed");
+      }).always(function() {
+        posts.innerHTML = postStr;
+      });
+
+
+
+
+    </script>
+
+  </body>
+</html>
