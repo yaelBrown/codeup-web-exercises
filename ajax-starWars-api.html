@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Star Wars api</title>
+  </head>
+  <body>
+    <h1 id="h1"></h1>
+    <div id="listOfMovies"></div>
+    <script src="/js/jquery-2.2.4.js"></script>
+
+    <p><a href="https://www.reddit.com/r/computerscience/.json">Comp Science JSON link</a></p>
+
+    <script>
+      var h1 = document.getElementById('h1');
+      var list = document.getElementById('listOfMovies');
+      var movieList = "";
+      // h1.innerText = "test"
+
+      console.log("this is working");
+      
+      $.ajax('https://swapi.co/api/films').done(function(data) {
+        // console.log(data.results);
+        // h1.innerText = data.results[0].title;
+
+        data.results.forEach(function(e,i) {
+          // console.log(e.title);
+          movieList += "<p>"+ e.title + "</p></br>";
+        })
+
+        list.innerHTML = movieList;
+      }).fail(function(jqXhr, status, error) {
+        console.log(status);
+        list.innerHTML = status;
+      }).always(function() {
+        console.log("This function always runs.");
+      });
+
+      console.log(movieList);
+
+      // $.ajax('https://hookb.in/JKqy1alpPNIzQzWp8jKD/?q=hello+world');
+
+    
+    </script>
+  </body>
+</html>
