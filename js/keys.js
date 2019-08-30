@@ -3,6 +3,6 @@ var mapBoxToken = 'pk.eyJ1IjoieWFlbGJyb3duIiwiYSI6ImNqemVidGhsMjAwc2szZW8wbW51bT
 console.log("mapbox key is loaded");
 
 // Dark Sky
-var key = "3a3c1b32f4117f09303b866e6843c330";
+var darkSkyKey = "3a3c1b32f4117f09303b866e6843c330";
 console.log("DarkSky API key loaded.");
 
