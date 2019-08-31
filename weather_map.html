@@ -61,7 +61,7 @@
         background-color: #3e4149;
       }
 
-      /* Page Content */ 
+      /* Page Content */
 
       .app {
         background: #efefef;
@@ -98,7 +98,7 @@
         font-size: .8em;
       }
 
-      .header > h1, 
+      .header > h1,
       .header > p {
         background-color: rgba(255,255,255,.3);
         border-radius: 10px;
@@ -134,7 +134,7 @@
       }
 
       #map {
-        width: 90%; 
+        width: 90%;
         height: 450px;
         margin-bottom: 1em;
         border-radius: 10px;
@@ -161,7 +161,7 @@
       .card-body {
         text-align: center;
       }
-    
+
       .card-img {
         margin-bottom: .5em;
         width: 200px;
@@ -226,12 +226,12 @@
       <div class="app">
         <div class="header">
           <h1>weatherly</h1>
-          <p>(my attempt of a cheesey startup name)</p> 
+          <p>(my attempt of a cheesey startup name)</p>
         </div>
 
         <!-- City input -->
         <input type="text" id="input-city" name="input-city" placeholder="City" tabindex="1" class="form-control no-border">
-      
+
         <div id="showWeather"></div>
         <!-- Name of city -->
         <div class="cityNameDiv">
@@ -239,10 +239,10 @@
           <div id="weatherIcon"></div>
         </div>
         <div id="fly">Fly</div>
-        
+
         <!-- mapBox boilerplate -->
         <div id='map'></div>
-        
+
         <div class="threeDay">
           <img src="img/amcharts_weather_icons_1.0.0/animated/weather.svg">
           <h4 class="">Three Day Forecast </h4>
@@ -297,8 +297,8 @@
 
 
       </div>
-      
-      
+
+
     </div>
 
 
@@ -333,7 +333,7 @@
       var inputCity = document.getElementById("input-city");
       var cityNameDiv = document.getElementById("cityName");
       var city = "";
-      var cityCoords; 
+      var cityCoords;
       var browserLocation = [];
       var loc;
       var proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -348,7 +348,6 @@
       // On [enter] keypress take input from input-city
       // keyDown
       document.addEventListener("keydown", function(e) {
-        e.preventDefault;
         if (e.keyCode === 13) {
           console.log(inputCity.value);
           cityNameDiv.innerText = inputCity.value;
@@ -356,14 +355,10 @@
           geocode(city, mapBoxToken).then(function(result) {
             cityCoords = result;
           });
-        }
-      });
-
-      // keyUp
-      document.addEventListener("keyup", function(e) {
-        e.preventDefault;
-        if (e.keyCode === 13) {
-          flyMe(cityCoords[0], cityCoords[1]);
+          setTimeout(function() {
+            flyMe(cityCoords[0], cityCoords[1]);
+            console.log("flyMe function runs 2 seconds later after keyup");
+          }, 500);
         }
       });
 
@@ -379,8 +374,8 @@
       }
 
       function showPosition(position) {
-        show.innerHTML = "Latitude: " + position.coords.latitude + 
-        "<br>Longitude: " + position.coords.longitude; 
+        show.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
         loc = position.coords.latitude + "," + position.coords.longitude;
         return loc;
       }
@@ -388,10 +383,11 @@
       // After 5 seconds, get browser location
       // setTimeout(getLocation(), 8000);
 
-      $.get(proxy + darkSky + darkSkyKey + "/29.4267,-98.4896").done(function(data) {
-        console.log(data);
+      $.get(proxy + darkSky + darkSkyKey + '/' + loc).done(function(data) {
+        // console.log(data);
         currentDarkSkyData = data;
         show.innerText = data.currently.apparentTemperature + " F";
+        manageCardData(data);
       }).fail(function(jqXhr, status) {
         console.log(status);
       });
@@ -404,12 +400,12 @@
       function convertCtoF(num) {
         return (num * 1.8) + 32;
       }
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
       // ===== mapBox =====
       // Basic specs for map
       mapboxgl.accessToken = mapBoxToken;
@@ -429,7 +425,7 @@
           zoom: 18
         });
       })
-      
+
       // function to fly somewhere.
       function flyMe(argsLong, argsLat) {
         map.flyTo({
@@ -438,11 +434,11 @@
         });
       }
 
-      
+
 
       // ===== Weather Icon =====
       function selectWeatherIcon(str) {
-        let icon; 
+        let icon;
         let dir = "/img/amcharts_weather_icons_1.0.0/animated/"
 
         switch (str) {
@@ -479,13 +475,21 @@
           case "partly-cloudy-night":
             icon = dir + "cloudy-night-2.svg";
             break;
-          default: 
+          default:
             icon = dir + "day.svg";
             break;
         }
 
         return icon;
       }
+
+
+
+    // Get day of the week
+    function dayOfTheWeek(obj) {
+      var options = { weekday: 'long' };
+      return new Intl.DateTimeFormat('en-US', options).format(obj);
+    }
 
     // Handle Card data
     function manageCardData(obj) {
@@ -499,41 +503,23 @@
         } else if (i === 1) {
           tempStr += '<h5 class="card-title" id="summary">Tomorrow</h5>';
         } else {
-          tempStr += '<h5 class="card-title" id="summary">Today</h5>';
+          tempStr += '<h5 class="card-title" id="summary">' + dayOfTheWeek(Date(e.daily.data[2].time * 1000)) + '</h5>';
         }
-        tempStr += '<img class="card-img" src="/img/amcharts_weather_icons_1.0.0/animated/day.svg">';
-        tempStr += '<h6 class="card-subtitle mb-2 text-muted">Partly Cloudy</h6>';
-        tempStr += '<p class="card-text">100 F</br></p>';
-        tempStr += '<p class="card-text"><small>High / Low: </small></br>96 / 87</br></p>';
+        tempStr += '<img class="card-img" src="' + selectWeatherIcon(e.daily.data[i].icon) + ''">';
+        tempStr += '<h6 class="card-subtitle mb-2 text-muted">' + e.daily.data[i].summary + '</h6>';
+        tempStr += '<p class="card-text"></br></p>'; // display current temperature
+        tempStr += '<p class="card-text"><small>High / Low: </small></br>' + e.daily.data[i].temperatureHigh + ' / ' + e.daily.data[i].temperatureLow + '</br></p>';
         tempStr += '<p class="card-text"><small>Wind Speed</small></br>';
-        tempStr += '<img class="windIcon" src="img/windVector.svg">6 <small>mph</small></br></p>';
+        tempStr += '<img class="windIcon" src="img/windVector.svg">' + e.daily.data[i].windSpeed + '<small>mph</small></br></p>';
         tempStr += '</div>';
         tempStr += '</div>';
       })
 
-
-
+      return tempStr;
     }
 
-
-
-
-
-    
-
-
-
-
-
+    // Display cards
 
     </script>
-
-
-
-
-
-
-
-
   </body>
 </html>
