@@ -151,6 +151,7 @@
       .card {
         margin: 1em;
         width: 100px;
+        visibility: hidden;
       }
 
       .card:hover {
@@ -328,6 +329,7 @@
 
     <script>
       'use strict';
+
       // Declare Variables
       var show = document.getElementById("showWeather");
       var inputCity = document.getElementById("input-city");
@@ -335,18 +337,36 @@
       var city = "";
       var cityCoords;
       var browserLocation = [];
-      var loc;
+      var loc = "";
       var proxy = 'https://cors-anywhere.herokuapp.com/';
       var darkSky = 'https://api.darksky.net/forecast/';
       var long = Number.MIN_SAFE_INTEGER;
       var lat = Number.MIN_SAFE_INTEGER;
       var currentDarkSkyData;
-
+      var cards = document.getElementById("cards");
+      var card = document.getElementsByClassName('card');
 
       show.innerHTML = "this is working";
 
-      // On [enter] keypress take input from input-city
-      // keyDown
+
+      // Set loc
+      function setLoc(long, lat) {
+        loc = lat + "," + long;
+        return loc;
+      }
+
+      // Update Dark Sky Data
+      function updateDarkSkyDate() {
+        $.get(proxy + darkSky + darkSkyKey + '/' + loc).done(function(data) {
+          // console.log(data);
+          currentDarkSkyData = data;
+          show.innerText = data.currently.apparentTemperature + " F";
+        }).fail(function(jqXhr, status) {
+          console.log(status);
+        });
+      }
+
+      // On [enter] keydown, take input from input-city
       document.addEventListener("keydown", function(e) {
         if (e.keyCode === 13) {
           console.log(inputCity.value);
@@ -359,15 +379,22 @@
             flyMe(cityCoords[0], cityCoords[1]);
             console.log("flyMe function runs 2 seconds later after keyup");
           }, 500);
+          setTimeout(function() {
+            setLoc(cityCoords[0], cityCoords[1]);
+            updateDarkSkyDate();
+          }, 2000);
+          manageCardData(data);
+          pushCardDataToPage();
         }
       });
 
       // ===== Browser Navigator =====
+
       // Get browser location
       function getLocation() {   // this function will show current location
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
-          flyMe(currentDarkSkyData.longitude, currentDarkSkyData.latitude);
+          // flyMe(currentDarkSkyData.longitude, currentDarkSkyData.latitude);
         } else {
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
@@ -381,16 +408,19 @@
       }
 
       // After 5 seconds, get browser location
+      setTimeout(getLocation, 3000);
+
       // setTimeout(getLocation(), 8000);
 
-      $.get(proxy + darkSky + darkSkyKey + '/' + loc).done(function(data) {
-        // console.log(data);
-        currentDarkSkyData = data;
-        show.innerText = data.currently.apparentTemperature + " F";
-        manageCardData(data);
-      }).fail(function(jqXhr, status) {
-        console.log(status);
-      });
+      // DarkSky api call
+      // $.get(proxy + darkSky + darkSkyKey + '/' + loc).done(function(data) {
+      //   // console.log(data);
+      //   currentDarkSkyData = data;
+      //   show.innerText = data.currently.apparentTemperature + " F";
+      // }).fail(function(jqXhr, status) {
+      //   console.log(status);
+      // });
+
 
       // conversion formulas
       function convertFtoC(num) {
@@ -402,11 +432,8 @@
       }
 
 
-
-
-
-
       // ===== mapBox =====
+
       // Basic specs for map
       mapboxgl.accessToken = mapBoxToken;
       var map = new mapboxgl.Map({
@@ -485,40 +512,94 @@
 
 
 
-    // Get day of the week
-    function dayOfTheWeek(obj) {
-      var options = { weekday: 'long' };
-      return new Intl.DateTimeFormat('en-US', options).format(obj);
+    // Get day of the week (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay)
+    // function dayOfTheWeek(obj) {
+    //   var options = { weekday: 'long' };
+    //   return new Intl.DateTimeFormat('en-US', options).format(obj);
+    // }
+
+    function dayOfTheWeek(date) {
+      let tempDateSS = date.toString().substring(0,3);
+      let temp = "";
+
+      switch (tempDateSS) {
+        case 'Sun':
+          temp = "Sunday";
+          break;
+        case 'Mon':
+          temp = "Monday";
+          break;
+        case 'Tue':
+          temp = "Tuesday";
+          break;
+        case 'Wed':
+          temp = "Wednesday";
+          break;
+        case 'Thu':
+          temp = "Thursday";
+          break;
+        case 'Fri':
+          temp = "Friday";
+          break;
+        case 'Sat':
+          temp = "Saturday";
+          break;
+      }
+
+      return temp;
     }
 
     // Handle Card data
     function manageCardData(obj) {
-      var tempStr = "";
+      let tempStr = "";
+      let doNothing;
+      let tempDate = "";
+      let dayOfWeekstr = "";
 
-      currentDarkSkyData.daily.data.forEach(function(e,i) {
-        tempStr += '<div class="card" style="width: 18rem;">';
-        tempStr += '<div class="card-body">';
-        if (i === 0) {
-          tempStr += '<h5 class="card-title" id="summary">Today</h5>';
-        } else if (i === 1) {
-          tempStr += '<h5 class="card-title" id="summary">Tomorrow</h5>';
+
+      obj.daily.data.forEach(function(e,i) {
+        if (i <= 2) {
+            tempDate = new Date(e.time * 1000);
+            dayOfWeekstr = dayOfTheWeek(tempDate);
+
+            tempStr += '<div class="card" style="width: 18rem;">';
+            tempStr += '<div class="card-body">';
+            if (i === 0) {
+              tempStr += '<h5 class="card-title" id="summary">Today</h5>';
+            } else if (i === 1) {
+              tempStr += '<h5 class="card-title" id="summary">Tomorrow</h5>';
+            } else {
+              tempStr += '<h5 class="card-title" id="summary">' + dayOfWeekstr + '</h5>';
+            };
+            tempStr += '<img class="card-img" src="' + selectWeatherIcon(e.icon) + '">';
+            tempStr += '<h6 class="card-subtitle mb-2 text-muted">' + e.summary + '</h6>';
+            tempStr += '<p class="card-text"></br></p>'; // display current temperature
+            tempStr += '<p class="card-text"><small>High / Low: </small></br>' + e.temperatureHigh + ' / ' + e.temperatureLow + '</br></p>';
+            tempStr += '<p class="card-text"><small>Wind Speed</small></br>';
+            tempStr += '<img class="windIcon" src="img/windVector.svg">' + e.windSpeed + '<small>mph</small></br></p>';
+            tempStr += '</div>';
+            tempStr += '</div>';
         } else {
-          tempStr += '<h5 class="card-title" id="summary">' + dayOfTheWeek(Date(e.daily.data[2].time * 1000)) + '</h5>';
+            doNothing = null;
         }
-        tempStr += '<img class="card-img" src="' + selectWeatherIcon(e.daily.data[i].icon) + ''">';
-        tempStr += '<h6 class="card-subtitle mb-2 text-muted">' + e.daily.data[i].summary + '</h6>';
-        tempStr += '<p class="card-text"></br></p>'; // display current temperature
-        tempStr += '<p class="card-text"><small>High / Low: </small></br>' + e.daily.data[i].temperatureHigh + ' / ' + e.daily.data[i].temperatureLow + '</br></p>';
-        tempStr += '<p class="card-text"><small>Wind Speed</small></br>';
-        tempStr += '<img class="windIcon" src="img/windVector.svg">' + e.daily.data[i].windSpeed + '<small>mph</small></br></p>';
-        tempStr += '</div>';
-        tempStr += '</div>';
       })
 
       return tempStr;
     }
 
-    // Display cards
+
+    // Print card data to page.
+    function pushCardDataToPage() {
+      cards.innerHTML = manageCardData(currentDarkSkyData);
+      // document.getElementsByClassName('card').forEach(function(e) {
+      //   e.style.visibility = "visable";
+      // })
+
+      for (var i = 0; i < card.length; i++) {
+        card[i].style.visibility = "visible";
+      }
+    }
+
 
     </script>
   </body>
