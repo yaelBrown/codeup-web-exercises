@@ -207,81 +207,81 @@ function selectWeatherIcon(str) {
 // }
 
 function dayOfTheWeek(date) {
-let tempDateSS = date.toString().substring(0,3);
-let temp = "";
+  let tempDateSS = date.toString().substring(0,3);
+  let temp = "";
 
-switch (tempDateSS) {
-  case 'Sun':
-    temp = "Sunday";
-    break;
-  case 'Mon':
-    temp = "Monday";
-    break;
-  case 'Tue':
-    temp = "Tuesday";
-    break;
-  case 'Wed':
-    temp = "Wednesday";
-    break;
-  case 'Thu':
-    temp = "Thursday";
-    break;
-  case 'Fri':
-    temp = "Friday";
-    break;
-  case 'Sat':
-    temp = "Saturday";
-    break;
-}
+  switch (tempDateSS) {
+    case 'Sun':
+      temp = "Sunday";
+      break;
+    case 'Mon':
+      temp = "Monday";
+      break;
+    case 'Tue':
+      temp = "Tuesday";
+      break;
+    case 'Wed':
+      temp = "Wednesday";
+      break;
+    case 'Thu':
+      temp = "Thursday";
+      break;
+    case 'Fri':
+      temp = "Friday";
+      break;
+    case 'Sat':
+      temp = "Saturday";
+      break;
+  }
 
-return temp;
+  return temp;
 }
 
 // Handle Card data
 function manageCardData(obj) {
-let tempStr = "";
-let doNothing;
-let tempDate = "";
-let dayOfWeekstr = "";
+  let tempStr = "";
+  let doNothing;
+  let tempDate = "";
+  let dayOfWeekstr = "";
 
 
-obj.daily.data.forEach(function(e,i) {
-  if (i <= 2) {
-    tempDate = new Date(e.time * 1000);
-    dayOfWeekstr = dayOfTheWeek(tempDate);
+  obj.daily.data.forEach(function(e,i) {
+    if (i <= 2) {
+      tempDate = new Date(e.time * 1000);
+      dayOfWeekstr = dayOfTheWeek(tempDate);
 
-    tempStr += '<div class="card" style="width: 18rem;">';
-    tempStr += '<div class="card-body">';
-    if (i === 0) {
-      tempStr += '<h5 class="card-title" id="summary">Today</h5>';
-    } else if (i === 1) {
-      tempStr += '<h5 class="card-title" id="summary">Tomorrow</h5>';
+      tempStr += '<div class="card" style="width: 18rem;">';
+      tempStr += '<div class="card-body">';
+      if (i === 0) {
+        tempStr += '<h5 class="card-title" id="summary">Today</h5>';
+      } else if (i === 1) {
+        tempStr += '<h5 class="card-title" id="summary">Tomorrow</h5>';
+      } else {
+        tempStr += '<h5 class="card-title" id="summary">' + dayOfWeekstr + '</h5>';
+      };
+      tempStr += '<img class="card-img" src="' + selectWeatherIcon(e.icon) + '">';
+      tempStr += '<h6 class="card-subtitle mb-2 text-muted">' + e.summary + '</h6>';
+      tempStr += '<p class="card-text"></br></p>'; // display current temperature
+      tempStr += '<p class="card-text"><small>High / Low: </small></br>' + e.temperatureHigh + ' / ' + e.temperatureLow + '</br></p>';
+      tempStr += '<p class="card-text"><small>Wind Speed</small></br>';
+      tempStr += '<img class="windIcon" src="img/windVector.svg">' + e.windSpeed + '<small>mph</small></br></p>';
+      tempStr += '</div>';
+      tempStr += '</div>';
     } else {
-      tempStr += '<h5 class="card-title" id="summary">' + dayOfWeekstr + '</h5>';
-    };
-    tempStr += '<img class="card-img" src="' + selectWeatherIcon(e.icon) + '">';
-    tempStr += '<h6 class="card-subtitle mb-2 text-muted">' + e.summary + '</h6>';
-    tempStr += '<p class="card-text"></br></p>'; // display current temperature
-    tempStr += '<p class="card-text"><small>High / Low: </small></br>' + e.temperatureHigh + ' / ' + e.temperatureLow + '</br></p>';
-    tempStr += '<p class="card-text"><small>Wind Speed</small></br>';
-    tempStr += '<img class="windIcon" src="img/windVector.svg">' + e.windSpeed + '<small>mph</small></br></p>';
-    tempStr += '</div>';
-    tempStr += '</div>';
-  } else {
-    doNothing = null;
-  }
-})
+      doNothing = null;
+    }
+  })
 
-return tempStr;
+  return tempStr;
 }
 
 
-// Print card data to page.
+  // Print card data to page.
 function pushCardDataToPage() {
-cards.innerHTML = manageCardData(currentDarkSkyData);
-for (var i = 0; i < card.length; i++) {
-  card[i].style.visibility = "visible";
-}
+  cards.innerHTML = manageCardData(currentDarkSkyData);
+  for (var i = 0; i < card.length; i++) {
+    card[i].style.visibility = "visible";
+  }
 }
 
 // attempt at marker
