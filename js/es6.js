@@ -68,6 +68,7 @@ let names = [];
 users.forEach((user) => {
   return emails.push(user.email);
 }
+
 users.forEach((user) => {
   return names.push(user.name);
 })
@@ -89,7 +90,7 @@ users.forEach((user) => {
 
 // TODO: rewrite the assignment below to use template strings
 // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
-developers.push("${name}\' email is ${email} ${name} knows ${languages.join}");
+developers.push(`${name}\' email is ${email} ${name} knows ${languages.join}`);
 
 
 // TODO: Use `let` for the following variable
@@ -105,4 +106,4 @@ for (let developer of developers) {}
 // list += '<li>' + developer + '</li>';
 // list += '</ul>';
 
-list += '<li> ${developer} </li>';
+list += `<li> ${developer} </li>`;
