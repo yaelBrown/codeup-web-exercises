@@ -1,4 +1,4 @@
-/* 
+/*
   (Lecture by viv)
   Thought process:
 
@@ -7,7 +7,7 @@
 
 // 1.  Write a function, `filterNumbers()` that takes in an array of mixed data types and returns an array of only the numbers type in ascending order.
 ​
-/* 
+/*
   Wite a function
   Accepts an array
   Mixed data type
@@ -27,9 +27,9 @@ function filterNumbers(arrayOfData) {
     }
   });
 
-  array.sort(); 
+  array.sort();
 
-  /* 
+  /*
 
   // Sort by numbers
   array.sort(function (a,b) {
@@ -40,14 +40,14 @@ function filterNumbers(arrayOfData) {
 
   */
 }
-  
-        
+
+
 // 2. Write a function, `getOlder()` that takes in array of dog objects and increases the value of the age properties by 1.
 ​
     //Example Input:
-   
+
     var input = [
-      {   
+      {
         name: "Chompers",
         breed: "Pug",
         age: 7
@@ -63,9 +63,9 @@ function filterNumbers(arrayOfData) {
         age: 10
     }
   ];
-  
+
       //Example output
-      
+
       // [
       //     {
       //          name: "Chompers",
@@ -83,7 +83,7 @@ function filterNumbers(arrayOfData) {
       //          age: 11
       //      }
       //  ];
-  
+
   function getOlder(arr) {
     arr.forEach(function(e) {
       console.log(e);
@@ -91,7 +91,7 @@ function filterNumbers(arrayOfData) {
       console.log(e.age)
     })
   }
-  
+
   getOlder(input);
   console.log(input);
 
@@ -121,8 +121,8 @@ function filterNumbers(arrayOfData) {
                  }
             ]
       ```
-            
-      ```js  
+
+      ```js
             // Example output:
              [
                  {
@@ -145,10 +145,10 @@ function filterNumbers(arrayOfData) {
                  }
              ]
     ```
-       
+
 // 4. Write a function, `adminList()` that takes in an array of user objects and returns a count of all admins based on the isAdmin property. Refactor to return an array of admin-only user emails. Refactor again to return an array of user objects that are admins.
     ```js
-         //Example Input: 
+         //Example Input:
           [
              {
                  isAdmin: true,
@@ -164,19 +164,19 @@ function filterNumbers(arrayOfData) {
              }
          ];
     ```
-    
+
     ```js
        // Example Output (before refactor): 2
- 
- 
-        // Example Output (after 1st refactor): 
+
+
+        // Example Output (after 1st refactor):
         [
             'user1@email.com',
             'user2@email.com'
         ]
-        
-     
-        // Example Output (after 2nd refactor): 
+
+
+        // Example Output (after 2nd refactor):
         [
              {
                  isAdmin: true,
@@ -204,65 +204,68 @@ function filterNumbers(arrayOfData) {
         email: 'user3@email.com'
       }
     ];
-    
+
     // function adminList(arr) {
     //   let count = 0;
-      
+
     //   for (var i = 0; i < arr.length; i++) {
     //     if (arr[i].isAdmin === true) {
     //       count++;
     //     }
     //   }
-    
+
     //   return count;
     // }
-    
-    
+
+
     function adminList(arr) {
       tempArr = [];
       tempEmails = [];
       let count = 0;
-      
+
       arr.forEach(function(e,i) {
         if (e.isAdmin === true) {
           tempArr.push(arr[i]);
           tempEmails.push(arr[i].email);
           count++;
-        } 
+        }
       })
-      
+
       console.log(tempEmails);
       console.log(tempArr);
       console.log(count);
-      
+
       return tempArr;
     }
-    
+
     console.log(adminList(users));
+
+
+
 ​
 // s5. Create a function, `makeSandwichObjects()` that takes in two array of strings, breads and fillings and returns an array of sandwichObjects that contain properties for bread and filling and values correspond to the same order of the two passed in arrays. Assume the two array inputs are the same length.
 ​
     ```js
         //     Example Input:
-        
+
          var breads  = [
              "white",
              "wheat",
              "rhy",
              "white"
          ];
-        
+
          var fillings = [
              "pb&j",
              "ham",
              "cheese steak",
              "tuna"
          ];
-        
-         makeSandwichObjects(breads, fillings) // example call to the function 
+
+         makeSandwichObjects(breads, fillings) // example call to the function
     ```
     ```js
-        // Example Output: 
+        // Example Output:
            [
              {
                  bread: "white",
