@@ -44,6 +44,7 @@ var languages = ['java', 'javascript', 'python'];
 //   languages: languages
 // });
 
+// object property short hand
 const users = {
   name,
   email,
@@ -84,13 +85,14 @@ users.forEach((user) => {
 //   const languages = user.languages;
 
 let developers = [];
+
 users.forEach((user) => {
   const {name, email, languages} = user;
 });
 
 // TODO: rewrite the assignment below to use template strings
 // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
-developers.push(`${name}\' email is ${email} ${name} knows ${languages.join}`);
+developers.push(`${name}\' email is ${email} ${name} knows ${languages.join(', ')}`);
 
 
 // TODO: Use `let` for the following variable
