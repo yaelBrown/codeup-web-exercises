@@ -6,3 +6,6 @@ console.log("mapbox key is loaded");
 var darkSkyKey = "3a3c1b32f4117f09303b866e6843c330";
 console.log("DarkSky API key loaded.");
 
+// Gh 
+let githubToken = "731b4f093335e5cb2d5d8f45c2652d51a86e5b26";
+console.log("gh key loaded.");
