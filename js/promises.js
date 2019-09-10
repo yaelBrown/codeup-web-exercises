@@ -116,6 +116,15 @@ let userName = "yaelBrown"
 // dateOfLastCommit();     // Should return a comment in console to return username
 
 
+
+
+
+
+
+
+
+let time = "";
+
 const secondDateOfLastCommit = (usr) => {
   return fetch(`https://api.github.com/users/${usr}/events`, {
     headers: {
@@ -130,10 +139,17 @@ const secondDateOfLastCommit = (usr) => {
     .then(() => {
       console.log(ghData[0].created_at);
       time = ghData[0].created_at;
+      time = new Date(time);
       return ghData[0].created_at;
     });
 }
 
 secondDateOfLastCommit(userName);
 
-let time;
+
+// print info to page. 
+let lastEvt = document.getElementById("lastEvt");
+
+setTimeout(() => {
+  lastEvt.textContent = `${userName} last commit event was ${time}`;
+}, 1000);
