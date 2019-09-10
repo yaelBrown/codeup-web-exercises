@@ -60,57 +60,80 @@ let fetchStarWarsInfo = () => {
 // fetch(url, {headers: {'Authorization': 'token YOUR_TOKEN_HERE'}})
 let ghData;
 
-const dateOfLastCommit = (usr) => {
-  (usr == undefined) ? console.log("enter a username") : "";
+// const dateOfLastCommit = (usr) => {
+//   (usr == undefined) ? console.log("enter a username") : "";
   
-  // fetch gh data and add to variable
-  const ghFetch = () => {
-    fetch(`https://api.github.com/users/${usr}/events`, {
-      headers: {
-        'Authorization': githubToken
-      }
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        ghData = json;
-        // console.log(json);
-      });
-  }
+//   // fetch gh data and add to variable
+//   const ghFetch = () => {
+//     fetch(`https://api.github.com/users/${usr}/events`, {
+//       headers: {
+//         'Authorization': githubToken
+//       }
+//     })
+//       .then((res) => res.json())
+//       .then((json) => {
+//         ghData = json;
+//         // console.log(json);
+//       });
+//   }
 
-  // call ghFetch
-  // ghFetch();
+//   // call ghFetch
+//   // ghFetch();
 
-  // declare variable for filtered data
-  let ghDataFiltered = []; 
+//   // declare variable for filtered data
+//   let ghDataFiltered = []; 
 
-  // filter github data and push it to ghDataFiltered array
-  const filterGHdata = () => {
-    ghData.forEach((e) => {
-      if (e.type == "CommitCommentEvent" || e.type == "PushEvent") {
-        ghDataFiltered.push(e);
-      }
-    });
-  };
+//   // filter github data and push it to ghDataFiltered array
+//   const filterGHdata = () => {
+//     ghData.forEach((e) => {
+//       if (e.type == "CommitCommentEvent" || e.type == "PushEvent") {
+//         ghDataFiltered.push(e);
+//       }
+//     });
+//   };
 
-  // run filter data 2 seconds after data was retrieved (prevents undefined)
-  // setTimeout(filterGHdata, 2000);
-  // setTimeout(() => {
-  //   console.log(ghDataFiltered);
-  // }, 2000);
+//   // run filter data 2 seconds after data was retrieved (prevents undefined)
+//   // setTimeout(filterGHdata, 2000);
+//   // setTimeout(() => {
+//   //   console.log(ghDataFiltered);
+//   // }, 2000);
 
-  // Return date of last commit from filtered array
-  const getDateOfLastCommit = () => {
-    return ghDataFiltered[0].created_at;
-  };
+//   // Return date of last commit from filtered array
+//   const getDateOfLastCommit = () => {
+//     return ghDataFiltered[0].created_at;
+//   };
 
-  // Return promise of date
-  return ghFetch().then(() => filterGHdata()).then(() => getDataOfLastCommit());
-};
+//   // Return promise of date
+//   return ghFetch().then(() => filterGHdata()).then(() => getDataOfLastCommit());
+// };
 
 
 let userName = "yaelBrown"
-let date = dateOfLastCommit(userName);
+// let date = dateOfLastCommit(userName);
 
-console.log(dateOfLastCommit(userName));
+// console.log(dateOfLastCommit(userName));
 
 // dateOfLastCommit();     // Should return a comment in console to return username
+
+
+const secondDateOfLastCommit = (usr) => {
+  return fetch(`https://api.github.com/users/${usr}/events`, {
+    headers: {
+      'Authorization': githubToken
+    }
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+      ghData = json;
+    })
+    .then(() => {
+      console.log(ghData[0].created_at);
+      time = ghData[0].created_at;
+      return ghData[0].created_at;
+    });
+}
+
+secondDateOfLastCommit(userName);
+
+let time;
