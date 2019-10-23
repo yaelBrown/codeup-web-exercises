@@ -15,7 +15,7 @@ ul, ol {
 }
 
 img {
-    width: 600px;
+    width: 20%;
 }
 
 img:nth-child(2), img:nth-child(4) {
